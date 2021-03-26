@@ -7,7 +7,7 @@
         SELECT count(1) AS count FROM skeyedu_user
     </select>
     
-    <select id="getUserList" resultType="demo.entity.SkeyeduUser">
+    <select id="getUserList" resultType="SkeyeduUser">
         SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
     </select>
 
