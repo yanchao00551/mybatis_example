@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="abc">
+<mapper namespace="demo.dao.user.UserMapper">
     <!-- 查询用户记录数的方法 -->
     <select id="count" resultType="int">
         SELECT count(1) AS count FROM skeyedu_user
+    </select>
+    
+    <select id="getUserList" resultType="demo.entity.SkeyeduUser">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
     </select>
 
 </mapper>

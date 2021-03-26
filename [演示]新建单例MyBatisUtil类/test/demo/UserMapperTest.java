@@ -1,5 +1,6 @@
 package demo;
 
+import demo.dao.util.MyBatisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -28,19 +29,13 @@ public class UserMapperTest {
         int count = 0;
         SqlSession sqlSession = null;
         try{
-            // 1、 获取mybatis-config.xml的输入流
-            InputStream is = Resources.getResourceAsStream(resource);
-            // 2、 创建SqlSessionFactory对象，完成队配置文件的读取
-            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-            // 3、 创建sqlSession
-            sqlSession = factory.openSession();
-            // 4、 调用mapper文件来对数据库进行操作，必须先把mapper文件引入到mybatis-config.xml中
+            sqlSession = MyBatisUtil.createSqlSession();
             count = sqlSession.selectOne("abc.count");
             log.info("UserMapper的count方法的返回结果：{}",count);
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }finally {
-            sqlSession.close();
+            MyBatisUtil.closeSqlSession(sqlSession);
         }
     }
 }
