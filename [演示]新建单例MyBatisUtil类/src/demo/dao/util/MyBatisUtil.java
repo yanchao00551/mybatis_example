@@ -35,9 +35,9 @@ public class MyBatisUtil {
      * @Param []
      * @return org.apache.ibatis.session.SqlSession
      **/
-
     public static SqlSession createSqlSession(){
-        return sqlSessionFactory.openSession(false);  //false手动提交事务，true自动提交事务
+        //false手动提交事务，true自动提交事务
+        return sqlSessionFactory.openSession(false);
     }
 
     /**
@@ -47,7 +47,6 @@ public class MyBatisUtil {
      * @Param [sqlSession]
      * @return void
      **/
-
     public static void closeSqlSession(SqlSession sqlSession){
         if(null != sqlSession){
             sqlSession.close();
