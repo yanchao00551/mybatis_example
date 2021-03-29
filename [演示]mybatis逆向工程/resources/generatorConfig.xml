@@ -47,5 +47,6 @@
         一定要一一对应 -->
         <table tableName="skeyedu_user" domainObjectName="SkeyeduUser"></table>
         <table tableName="skeyedu_news" domainObjectName="SkeyeduNews" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
     </context>
 </generatorConfiguration>
