@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.skeyedu.dao.user.UserMapper">
+    <resultMap id="BaseResultMap" type="org.skeyedu.entity.SkeyeduUser" >
+        <id column="aid" property="id"  />
+        <result column="loginName" property="loginName"/>
+        <result column="userName" property="userName" />
+        <result column="password" property="password"  />
+        <result column="sex" property="sex" />
+        <result column="identityCode" property="identityCode" />
+        <result column="email" property="email" />
+        <result column="mobile" property="mobile" />
+        <result column="type" property="type"/>
+
+        <result column="bid" property="bid" />
+        <result column="userId" property="userId"/>
+        <result column="address" property="address" />
+    </resultMap>
+
+    <!-- 查询用户记录数的方法 -->
+    <select id="count" resultType="int">
+        SELECT count(1) AS count FROM skeyedu_user
+    </select>
+    
+    <select id="getUserList" resultType="SkeyeduUser">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+    </select>
+    
+    
+    <select id="getUserListByUserName" resultType="SkeyeduUser" parameterType="String">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM skeyedu_user WHERE 1=1 AND userName LIKE CONCAT('%',#{userName},'%')
+    </select>
+
+    <!-- 查询用户列表（参数：对象入参 -->
+    <select id="queryUserList" resultType="SkeyeduUser" parameterType="SkeyeduUser">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM skeyedu_user WHERE 1=1 AND userName LIKE CONCAT('%',#{userName},'%') AND type = #{type}
+     </select>
+
+    <!-- 查询用户列表（参数:Map -->
+    <select id="getUserListByMap" resultType="SkeyeduUser" parameterType="Map">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM skeyedu_user WHERE 1=1 AND loginName LIKE CONCAT('%',#{lName},'%') AND sex = #{sex}
+    </select>
+
+    <!-- resultMap 返回 -->
+    <select id="queryUserListByMap" resultMap="BaseResultMap" parameterType="Map">
+        select a.`id` AS aid,a.`loginName`,a.`userName`,a.`password`,a.`sex`,a.`identityCode`,a.`email`,a.`mobile`,b.id AS bid,b.userId,b.address FROM skeyedu_user a LEFT JOIN skeyedu_user_address b ON a.id = b.userId WHERE 1=1 AND loginName LIKE CONCAT('%',#{lName},'%') AND sex = #{sex}
+    </select>
+
+
+</mapper>
