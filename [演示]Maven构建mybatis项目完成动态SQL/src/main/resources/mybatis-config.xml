@@ -14,7 +14,7 @@
 
     <!-- 类型别名 -->
     <typeAliases>
-        <package name="demo.entity"/>
+        <package name="org.skeyedu.entity"/>
     </typeAliases>
 
 
@@ -34,8 +34,9 @@
 
     <!-- 将mapper文件加入到配置文件中 -->
     <mappers>
-        <mapper resource="classpath:mybatis/UserMapper.xml"/>
+        <!--<mapper resource="org/skeyedu/dao/user/UserMapper.xml"/>-->
+        <mapper resource="mapper/UserMapper.xml"/>
+        <!--<package name="org.skeyedu.dao"/>-->
     </mappers>
-
 
 </configuration>
