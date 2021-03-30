@@ -22,11 +22,51 @@
     <select id="count" resultType="int">
         SELECT count(1) AS count FROM skeyedu_user
     </select>
-    
-    <select id="getUserList" resultType="SkeyeduUser">
-        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+
+    <!--
+    改造getUserList
+    若 只传入1个参数：userType,而不传入参数:userName的时候，查不到数据
+    <select id="getUserList" resultMap="BaseResultMap">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user WHERE 1=1
+        <if test="userName != null and userName != ''">
+            AND userName LIKE CONCAT('%',#{userName},'%')
+        </if>
+        <if test="userType !=null">
+            AND type = #{userType}
+        </if>
     </select>
-    
+
+     演示如何灵活处理where and|or
+
+    <select id="getUserList" resultMap="BaseResultMap">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+       <where>
+           <if test="userName != null and userName != ''">
+               AND userName LIKE CONCAT('%',#{userName},'%')
+           </if>
+           <if test="userType !=null">
+               AND type = #{userType}
+           </if>
+       </where>
+    </select>
+
+
+    演示如何灵活处理 where and|or  if+trim
+       -->
+
+    <select id="getUserList" resultMap="BaseResultMap">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+          <trim prefix="where" prefixOverrides="and | or">
+              <if test="userName != null and userName != ''">
+                  AND userName LIKE CONCAT('%',#{userName},'%')
+              </if>
+              <if test="userType !=null">
+                  AND type = #{userType}
+              </if>
+          </trim>
+    </select>
+
+
     
     <select id="getUserListByUserName" resultType="SkeyeduUser" parameterType="String">
         SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM skeyedu_user WHERE 1=1 AND userName LIKE CONCAT('%',#{userName},'%')
@@ -46,6 +86,77 @@
     <select id="queryUserListByMap" resultMap="BaseResultMap" parameterType="Map">
         select a.`id` AS aid,a.`loginName`,a.`userName`,a.`password`,a.`sex`,a.`identityCode`,a.`email`,a.`mobile`,b.id AS bid,b.userId,b.address FROM skeyedu_user a LEFT JOIN skeyedu_user_address b ON a.id = b.userId WHERE 1=1 AND loginName LIKE CONCAT('%',#{lName},'%') AND sex = #{sex}
     </select>
+
+
+    <!-- 避免误改 if + set -->
+    <!--
+    <update id="modify" parameterType="SkeyeduUser">
+      update skeyedu_user
+      <set>
+          <if test="loginName != null">
+              loginName = #{loginName,jdbcType=VARCHAR},
+          </if>
+          <if test="userName != null">
+              userName = #{userName,jdbcType=VARCHAR},
+          </if>
+          <if test="password != null">
+              password = #{password,jdbcType=VARCHAR},
+          </if>
+          <if test="sex != null">
+              sex = #{sex,jdbcType=INTEGER},
+          </if>
+          <if test="identityCode != null">
+              identityCode = #{identityCode,jdbcType=VARCHAR},
+          </if>
+          <if test="email != null">
+              email = #{email,jdbcType=VARCHAR},
+          </if>
+          <if test="mobile != null">
+              mobile = #{mobile,jdbcType=VARCHAR},
+          </if>
+          <if test="type != null">
+              type = #{type,jdbcType=INTEGER}
+          </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+
+   if+trim写法
+   -->
+
+    <update id="modify" parameterType="SkeyeduUser">
+      update skeyedu_user
+      <trim prefix="set" suffixOverrides="," suffix="where id=#{id,jdbcType=INTEGER}">
+          <if test="loginName != null">
+              loginName = #{loginName,jdbcType=VARCHAR},
+          </if>
+          <if test="userName != null">
+              userName = #{userName,jdbcType=VARCHAR},
+          </if>
+          <if test="password != null">
+              password = #{password,jdbcType=VARCHAR},
+          </if>
+          <if test="sex != null">
+              sex = #{sex,jdbcType=INTEGER},
+          </if>
+          <if test="identityCode != null">
+              identityCode = #{identityCode,jdbcType=VARCHAR},
+          </if>
+          <if test="email != null">
+              email = #{email,jdbcType=VARCHAR},
+          </if>
+          <if test="mobile != null">
+              mobile = #{mobile,jdbcType=VARCHAR},
+          </if>
+          <if test="type != null">
+              type = #{type,jdbcType=INTEGER},
+          </if>
+      </trim>
+
+    </update>
+
 
 
 </mapper>

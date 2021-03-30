@@ -36,6 +36,8 @@
     <mappers>
         <!--<mapper resource="org/skeyedu/dao/user/UserMapper.xml"/>-->
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/SkeyeduOrderDetailMapper.xml"/>
+
         <!--<package name="org.skeyedu.dao"/>-->
     </mappers>
 

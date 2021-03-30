@@ -1,6 +1,7 @@
 package org.skeyedu.dao.user;
 
 
+import org.apache.ibatis.annotations.Param;
 import org.skeyedu.entity.SkeyeduUser;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public interface UserMapper {
      * @Param []
      * @return java.util.List<demo.entity.SkeyeduUser>
      **/
-    List<SkeyeduUser> getUserList();
+    List<SkeyeduUser> getUserList(@Param("userName")String userName,@Param("userType")Integer typeId);
 
     /**
      * 根据用户名称查询用户列表（模糊查询）
@@ -75,5 +76,16 @@ public interface UserMapper {
      * @return java.util.List<demo.entity.SkeyeduUser>
      **/
     List<SkeyeduUser> queryUserListByMap(Map<String, String> userMap);
+
+
+    /**
+     * 修改用户信息
+     * @Author 悟空
+     * @Description //TODO
+     * @Date 14:28 2021/3/29
+     * @Param [skeyeduUser]
+     * @return int
+     **/
+    int modify(SkeyeduUser skeyeduUser);
 
 }

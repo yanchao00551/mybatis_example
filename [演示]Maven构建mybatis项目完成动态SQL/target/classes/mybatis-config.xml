@@ -32,11 +32,14 @@
     </environments>
 
 
-    <!-- 将mapper文件加入到配置文件中 -->
+    <!-- 将mapper文件加入到配置文件中 不能用classpath-->
     <mappers>
         <!--<mapper resource="org/skeyedu/dao/user/UserMapper.xml"/>-->
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/SkeyeduOrderDetailMapper.xml"/>
+
         <!--<package name="org.skeyedu.dao"/>-->
     </mappers>
+
 
 </configuration>
