@@ -1,0 +1,3 @@
+org\skeyedu\entity\SkeyeduUser.class
+org\skeyedu\dao\user\UserMapper.class
+org\skeyedu\dao\util\MyBatisUtil.class
