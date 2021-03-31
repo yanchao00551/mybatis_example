@@ -40,7 +40,9 @@ public class UserMapperTest {
             //第二种方式：调用getMapper(Mapper.class)执行dao接口方法来实现对数据库的查询操作
             String userName = "";
             Integer typeId = 0;
-            users = sqlSession.getMapper(UserMapper.class).getUserList(userName,typeId);
+            Integer pageSize = 5;
+            Integer currentPageNo = (1-1)*5;  //(当前页-1)*每页条数
+            users = sqlSession.getMapper(UserMapper.class).getUserList(userName,typeId,currentPageNo,pageSize);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -181,12 +183,13 @@ public class UserMapperTest {
             sqlSession = MyBatisUtil.createSqlSession();
             //第二种方式：调用getMapper(Mapper.class)执行dao接口方法来实现对数据库的查询操作
             SkeyduOrderDetailVO vo = new SkeyduOrderDetailVO();
-            vo.setCostStart(100);
-            vo.setCostEnd(200);
             List<Integer> list = new ArrayList<>();
             list.add(18);
             list.add(2);
             vo.setUserIds(list);
+            Map<String,Object> tmpMap = new HashMap<String,Object>();
+            tmpMap.put("rKey",list);
+            vo.setConditionMap(tmpMap);
             //javabean传参
             orders = sqlSession.getMapper(SkeyeduOrderDetailMapper.class).getUserByUidForeachArray(vo);
         }catch (Exception e){

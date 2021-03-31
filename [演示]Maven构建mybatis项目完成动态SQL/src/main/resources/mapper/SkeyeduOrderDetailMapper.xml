@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.skeyedu.dao.user.SkeyeduOrderDetailMapper" >
-  <resultMap id="BaseResultMap" type="org.skeyedu.entity.SkeyeduOrderDetail" >
+<resultMap id="BaseResultMap" type="org.skeyedu.entity.SkeyeduOrderDetail" >
     <id column="id" property="id" />
     <result column="orderId" property="orderid"  />
     <result column="productId" property="productid"/>
     <result column="quantity" property="quantity"  />
     <result column="cost" property="cost" />
-  </resultMap>
+</resultMap>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -39,30 +39,34 @@
   </select>
 
 
-  <select id="getUserByUidForeachArray" resultMap="BaseResultMap" parameterType="org.skeyedu.vo.SkeyduOrderDetailVO">
- SELECT a.`id`, `orderId`, `productId`, `quantity`, a.`cost` FROM skeyedu_order_detail AS a
- LEFT JOIN skeyedu_order AS b ON A.orderId=B.id
- <trim prefix="where" prefixOverrides="and | or">
+<select id="getUserByUidForeachArray" resultMap="BaseResultMap" parameterType="org.skeyedu.vo.SkeyduOrderDetailVO">
+    SELECT a.`id`, `orderId`, `productId`, `quantity`, a.`cost` FROM skeyedu_order_detail AS a
+    LEFT JOIN skeyedu_order AS b ON A.orderId=B.id
+   <trim prefix="where" prefixOverrides="and | or">
+      <!-- 区间查找 -->
+      <if test="costStart != null">
+         AND a.cost BETWEEN #{costStart} AND #{costEnd}
+      </if>
+      <!-- IN 查找  -->
+      <if test="userIds != null">
+         AND b.userId IN
+      <!-- 传进来是一个list类型
+      <foreach collection="userIds" item="userIds" open="(" separator="," close=")">
+          #{userIds}
+      </foreach>
+      -->
 
-   <!-- 区间查找 -->
-   <if test="costStart != null">
-     AND a.cost BETWEEN #{costStart} AND #{costEnd}
-   </if>
+      <!-- 传进来一个map类型 -->
 
-   <!-- IN 查找  -->
-   <if test="userIds != null">
-     AND b.userId IN
-     <!-- 传进来是一个数组类型 -->
-     <foreach collection="userIds" item="userIds" open="(" separator="," close=")">
-       #{userIds}
-     </foreach>
-   </if>
-
- </trim>
+      <foreach collection="conditionMap.rKey" item="rMap" open="(" separator="," close=")">
+          #{rMap}
+      </foreach>
 
 
-
+      </if>
+   </trim>
   </select>
+
 
 
 </mapper>

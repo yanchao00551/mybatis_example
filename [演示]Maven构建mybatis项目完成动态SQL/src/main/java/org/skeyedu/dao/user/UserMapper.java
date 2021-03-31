@@ -35,7 +35,7 @@ public interface UserMapper {
      * @Param []
      * @return java.util.List<demo.entity.SkeyeduUser>
      **/
-    List<SkeyeduUser> getUserList(@Param("userName")String userName,@Param("userType")Integer typeId);
+    List<SkeyeduUser> getUserList(@Param("userName")String userName,@Param("userType")Integer typeId,@Param("from")Integer currentPageNo,@Param("pageSize")Integer pageSize);
 
     /**
      * 根据用户名称查询用户列表（模糊查询）

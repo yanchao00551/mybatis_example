@@ -3,6 +3,7 @@ package org.skeyedu.vo;
 import org.skeyedu.entity.SkeyeduOrderDetail;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @PackageName:org.skeyedu.vo
@@ -18,7 +19,18 @@ public class SkeyduOrderDetailVO extends SkeyeduOrderDetail {
 
     private Integer costStart;
     private Integer costEnd;
+
     private List<Integer> userIds;
+
+    private Map<String,Object> conditionMap;
+
+    public Map<String, Object> getConditionMap() {
+        return conditionMap;
+    }
+
+    public void setConditionMap(Map<String, Object> conditionMap) {
+        this.conditionMap = conditionMap;
+    }
 
     public List<Integer> getUserIds() {
         return userIds;
