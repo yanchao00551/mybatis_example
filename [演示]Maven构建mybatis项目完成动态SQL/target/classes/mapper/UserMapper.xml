@@ -52,7 +52,7 @@
 
 
     演示如何灵活处理 where and|or  if+trim
-       -->
+
 
     <select id="getUserList" resultMap="BaseResultMap">
         SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
@@ -67,7 +67,44 @@
     </select>
 
 
-    
+    查询用户列表choose
+
+
+    <select id="getUserList" resultMap="BaseResultMap">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+        <trim prefix="where" prefixOverrides="and | or">
+           <choose>
+               <when test="userName != null and userName != ''">
+                   and userName like CONCAT('%',#{userName},'%')
+               </when>
+               <when test="userType != null">
+                   and type = #{userType}
+               </when>
+           </choose>
+        </trim>
+    </select>
+
+
+    查询用户列表分页显示
+             -->
+
+    <select id="getUserList" resultMap="BaseResultMap">
+        SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM  skeyedu_user
+        <trim prefix="where" prefixOverrides="and | or">
+            <choose>
+                <when test="userName != null and userName != ''">
+                    and userName like CONCAT('%',#{userName},'%')
+                </when>
+                <when test="userType != null">
+                    and type = #{userType}
+                </when>
+            </choose>
+            order by id DESC limit #{from},#{pageSize}
+        </trim>
+    </select>
+
+
+
     <select id="getUserListByUserName" resultType="SkeyeduUser" parameterType="String">
         SELECT `id`, `loginName`, `userName`, `password`, `sex`, `identityCode`, `email`, `mobile`, `type` FROM skeyedu_user WHERE 1=1 AND userName LIKE CONCAT('%',#{userName},'%')
     </select>

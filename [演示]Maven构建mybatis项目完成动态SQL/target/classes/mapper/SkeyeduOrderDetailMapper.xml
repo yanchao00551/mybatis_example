@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.skeyedu.dao.user.SkeyeduOrderDetailMapper" >
+<resultMap id="BaseResultMap" type="org.skeyedu.entity.SkeyeduOrderDetail" >
+    <id column="id" property="id" />
+    <result column="orderId" property="orderid"  />
+    <result column="productId" property="productid"/>
+    <result column="quantity" property="quantity"  />
+    <result column="cost" property="cost" />
+</resultMap>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from skeyedu_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="SkeyeduOrderDetail" >
+    insert into skeyedu_order_detail (id, orderId, productId, 
+      quantity, cost)
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=INTEGER}, #{cost,jdbcType=REAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="SkeyeduOrderDetail" >
+    update skeyedu_order_detail
+    set orderId = #{orderid,jdbcType=INTEGER},
+      productId = #{productid,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, orderId, productId, quantity, cost
+    from skeyedu_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, orderId, productId, quantity, cost
+    from skeyedu_order_detail
+  </select>
+
+
+<select id="getUserByUidForeachArray" resultMap="BaseResultMap" parameterType="org.skeyedu.vo.SkeyduOrderDetailVO">
+    SELECT a.`id`, `orderId`, `productId`, `quantity`, a.`cost` FROM skeyedu_order_detail AS a
+    LEFT JOIN skeyedu_order AS b ON A.orderId=B.id
+   <trim prefix="where" prefixOverrides="and | or">
+      <!-- 区间查找 -->
+      <if test="costStart != null">
+         AND a.cost BETWEEN #{costStart} AND #{costEnd}
+      </if>
+      <!-- IN 查找  -->
+      <if test="userIds != null">
+         AND b.userId IN
+      <!-- 传进来是一个list类型
+      <foreach collection="userIds" item="userIds" open="(" separator="," close=")">
+          #{userIds}
+      </foreach>
+      -->
+
+      <!-- 传进来一个map类型 -->
+
+      <foreach collection="conditionMap.rKey" item="rMap" open="(" separator="," close=")">
+          #{rMap}
+      </foreach>
+
+
+      </if>
+   </trim>
+  </select>
+
+
+
+</mapper>

@@ -20,13 +20,13 @@
 
         <!--数据库连接配置-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/skeyedu_mall?allowMultiQueries=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/panjin_jiudian?allowMultiQueries=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;"
                         userId="root"
                         password="root">
         </jdbcConnection>
 
         <!-- javaBean的生成 targetProject文件生成的位置,targetPackage具体的包名-->
-        <javaModelGenerator targetPackage="org.example.bean" targetProject="src">
+        <javaModelGenerator targetPackage="com.jiudian.modules.sys.entity" targetProject="src">
             <property name="enableSubPackages" value="true" />
 
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -34,19 +34,18 @@
         </javaModelGenerator>
 
         <!-- SQL映射文件的生成  targetProject文件生成的位置,targetPackage具体的包名-->
-        <sqlMapGenerator targetPackage="mapper"  targetProject="resources">
+        <sqlMapGenerator targetPackage="mapping"  targetProject="resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- Mapper接口的生成  targetProject文件生成的位置,targetPackage具体的包名-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="org.example.mapper"  targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jiudian.modules.sys.mapper"  targetProject="src">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!--tableName代表数据库的表名， domainObjectName表示要创建的java对象的对象名
         一定要一一对应 -->
-        <table tableName="skeyedu_user" domainObjectName="SkeyeduUser"></table>
-        <table tableName="skeyedu_news" domainObjectName="SkeyeduNews" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="skeyedu_order_detail" domainObjectName="SkeyeduOrderDetail"></table>
+        <table tableName="user" domainObjectName="User"></table>
+        <table tableName="sys_log" domainObjectName="SysLog"></table>
     </context>
 </generatorConfiguration>
