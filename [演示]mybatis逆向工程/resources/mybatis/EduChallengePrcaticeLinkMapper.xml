@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduChallengePrcaticeLinkMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduChallengePrcaticeLink" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="challenge_id" property="challengeId" jdbcType="BIGINT" />
+    <result column="image_id" property="imageId" jdbcType="BIGINT" />
+    <result column="language_id" property="languageId" jdbcType="INTEGER" />
+    <result column="run_script" property="runScript" jdbcType="VARCHAR" />
+    <result column="expose_port" property="exposePort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="practice_description" property="practiceDescription" jdbcType="LONGVARCHAR" />
+    <result column="practice_code_path" property="practiceCodePath" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_challenge_prcatice_link
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduChallengePrcaticeLink" >
+    insert into edu_challenge_prcatice_link (id, challenge_id, image_id, 
+      language_id, run_script, expose_port, 
+      create_time, update_time, practice_description, 
+      practice_code_path)
+    values (#{id,jdbcType=BIGINT}, #{challengeId,jdbcType=BIGINT}, #{imageId,jdbcType=BIGINT}, 
+      #{languageId,jdbcType=INTEGER}, #{runScript,jdbcType=VARCHAR}, #{exposePort,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{practiceDescription,jdbcType=LONGVARCHAR}, 
+      #{practiceCodePath,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduChallengePrcaticeLink" >
+    update edu_challenge_prcatice_link
+    set challenge_id = #{challengeId,jdbcType=BIGINT},
+      image_id = #{imageId,jdbcType=BIGINT},
+      language_id = #{languageId,jdbcType=INTEGER},
+      run_script = #{runScript,jdbcType=VARCHAR},
+      expose_port = #{exposePort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      practice_description = #{practiceDescription,jdbcType=LONGVARCHAR},
+      practice_code_path = #{practiceCodePath,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, challenge_id, image_id, language_id, run_script, expose_port, create_time, 
+    update_time, practice_description, practice_code_path
+    from edu_challenge_prcatice_link
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, challenge_id, image_id, language_id, run_script, expose_port, create_time, 
+    update_time, practice_description, practice_code_path
+    from edu_challenge_prcatice_link
+  </select>
+</mapper>

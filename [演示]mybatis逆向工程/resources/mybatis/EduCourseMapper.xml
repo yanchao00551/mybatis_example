@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduCourseMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduCourse" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="added_count" property="addedCount" jdbcType="INTEGER" />
+    <result column="target" property="target" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="reserved_price" property="reservedPrice" jdbcType="DECIMAL" />
+    <result column="recommend" property="recommend" jdbcType="BIT" />
+    <result column="description" property="description" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="language_id" property="languageId" jdbcType="INTEGER" />
+    <result column="start_date_time" property="startDateTime" jdbcType="TIMESTAMP" />
+    <result column="end_date_time" property="endDateTime" jdbcType="TIMESTAMP" />
+    <result column="parent_category_id" property="parentCategoryId" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_course
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduCourse" >
+    insert into edu_course (id, name, status, 
+      added_count, target, user_id, 
+      price, reserved_price, recommend, 
+      description, version, create_time, 
+      update_time, category_id, language_id, 
+      start_date_time, end_date_time, parent_category_id, 
+      is_delete)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{addedCount,jdbcType=INTEGER}, #{target,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{price,jdbcType=DECIMAL}, #{reservedPrice,jdbcType=DECIMAL}, #{recommend,jdbcType=BIT}, 
+      #{description,jdbcType=BIGINT}, #{version,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{categoryId,jdbcType=INTEGER}, #{languageId,jdbcType=INTEGER}, 
+      #{startDateTime,jdbcType=TIMESTAMP}, #{endDateTime,jdbcType=TIMESTAMP}, #{parentCategoryId,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduCourse" >
+    update edu_course
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      added_count = #{addedCount,jdbcType=INTEGER},
+      target = #{target,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DECIMAL},
+      reserved_price = #{reservedPrice,jdbcType=DECIMAL},
+      recommend = #{recommend,jdbcType=BIT},
+      description = #{description,jdbcType=BIGINT},
+      version = #{version,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      language_id = #{languageId,jdbcType=INTEGER},
+      start_date_time = #{startDateTime,jdbcType=TIMESTAMP},
+      end_date_time = #{endDateTime,jdbcType=TIMESTAMP},
+      parent_category_id = #{parentCategoryId,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, name, status, added_count, target, user_id, price, reserved_price, recommend, 
+    description, version, create_time, update_time, category_id, language_id, start_date_time, 
+    end_date_time, parent_category_id, is_delete
+    from edu_course
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, status, added_count, target, user_id, price, reserved_price, recommend, 
+    description, version, create_time, update_time, category_id, language_id, start_date_time, 
+    end_date_time, parent_category_id, is_delete
+    from edu_course
+  </select>
+</mapper>

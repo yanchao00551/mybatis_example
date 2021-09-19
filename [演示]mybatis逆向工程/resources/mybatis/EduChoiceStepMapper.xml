@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduChoiceStepMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduChoiceStep" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="difficulty" property="difficulty" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="question" property="question" jdbcType="LONGVARCHAR" />
+    <result column="choices" property="choices" jdbcType="LONGVARCHAR" />
+    <result column="explain" property="explain" jdbcType="LONGVARCHAR" />
+    <result column="choices_explain" property="choicesExplain" jdbcType="LONGVARCHAR" />
+    <result column="video_id" property="videoId" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_choice_step
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduChoiceStep" >
+    insert into edu_choice_step (id, answer, category, 
+      type, difficulty, create_time, 
+      update_time, question, choices, 
+      explain, choices_explain, video_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{answer,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, 
+      #{type,jdbcType=TINYINT}, #{difficulty,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{question,jdbcType=LONGVARCHAR}, #{choices,jdbcType=LONGVARCHAR}, 
+      #{explain,jdbcType=LONGVARCHAR}, #{choicesExplain,jdbcType=LONGVARCHAR}, #{videoId,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduChoiceStep" >
+    update edu_choice_step
+    set answer = #{answer,jdbcType=VARCHAR},
+      category = #{category,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      difficulty = #{difficulty,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      question = #{question,jdbcType=LONGVARCHAR},
+      choices = #{choices,jdbcType=LONGVARCHAR},
+      explain = #{explain,jdbcType=LONGVARCHAR},
+      choices_explain = #{choicesExplain,jdbcType=LONGVARCHAR},
+      video_id = #{videoId,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, answer, category, type, difficulty, create_time, update_time, question, 
+    choices, explain, choices_explain, video_id
+    from edu_choice_step
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, answer, category, type, difficulty, create_time, update_time, question, 
+    choices, explain, choices_explain, video_id
+    from edu_choice_step
+  </select>
+</mapper>

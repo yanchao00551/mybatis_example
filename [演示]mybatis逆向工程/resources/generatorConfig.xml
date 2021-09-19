@@ -20,13 +20,13 @@
 
         <!--数据库连接配置-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/panjin_jiudian?allowMultiQueries=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/EduCoderProgram?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;allowMultiQueries=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai"
                         userId="root"
                         password="root">
         </jdbcConnection>
 
         <!-- javaBean的生成 targetProject文件生成的位置,targetPackage具体的包名-->
-        <javaModelGenerator targetPackage="com.jiudian.modules.sys.entity" targetProject="src">
+        <javaModelGenerator targetPackage="net.educoder.core.persistence.beans" targetProject="src">
             <property name="enableSubPackages" value="true" />
 
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -34,18 +34,49 @@
         </javaModelGenerator>
 
         <!-- SQL映射文件的生成  targetProject文件生成的位置,targetPackage具体的包名-->
-        <sqlMapGenerator targetPackage="mapping"  targetProject="resources">
+        <sqlMapGenerator targetPackage="mybatis"  targetProject="resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- Mapper接口的生成  targetProject文件生成的位置,targetPackage具体的包名-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jiudian.modules.sys.mapper"  targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="net.educoder.core.persistence.mapper"  targetProject="src">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!--tableName代表数据库的表名， domainObjectName表示要创建的java对象的对象名
         一定要一一对应 -->
-        <table tableName="user" domainObjectName="User"></table>
-        <table tableName="sys_log" domainObjectName="SysLog"></table>
+        <table tableName="edu_users" domainObjectName="EduUsers"></table>
+        <table tableName="edu_user_extensions" domainObjectName="EduUserExtensions"></table>
+        <table tableName="edu_tokens" domainObjectName="EduTokens"></table>
+        <table tableName="edu_course" domainObjectName="EduCourse"></table>
+        <table tableName="edu_sys_log" domainObjectName="EduSysLog"></table>
+        <table tableName="edu_scan" domainObjectName="EduScan"></table>
+        <table tableName="edu_open_users" domainObjectName="EduOpenUsers"></table>
+        <table tableName="edu_user_actions" domainObjectName="EduUserActions"></table>
+        <table tableName="edu_user_course_subscribe" domainObjectName="EduUserCourseSubscribe"></table>
+        <table tableName="edu_choice_step" domainObjectName="EduChoiceStep"></table>
+        <table tableName="edu_chapter" domainObjectName="EduChapter"></table>
+        <table tableName="edu_course_tags" domainObjectName="EduCourseTag"></table>
+        <table tableName="edu_course_desc" domainObjectName="EduCourseDesc"></table>
+        <table tableName="edu_tags" domainObjectName="EduTag"></table>
+        <table tableName="edu_explain" domainObjectName="EduExplain"></table>
+        <table tableName="edu_terminal_step" domainObjectName="EduTerminalStep"></table>
+        <table tableName="edu_challenge" domainObjectName="EduChallenge"></table>
+        <table tableName="edu_title_step" domainObjectName="EduTitleStep"></table>
+        <table tableName="edu_rich_text_step" domainObjectName="EduRichTextStep"></table>
+        <table tableName="edu_learning_step" domainObjectName="EduLearningStep"></table>
+        <table tableName="edu_ide_step" domainObjectName="EduIdeStep"></table>
+
+        <table tableName="edu_images" domainObjectName="EduImage"></table>
+        <table tableName="edu_language" domainObjectName="EduLanguage"></table>
+        <table tableName="edu_course_category" domainObjectName="EduCourseCategory"></table>
+
+
+        <table tableName="edu_course_instance" domainObjectName="EduCourseInstance"></table>
+
+
+        <table tableName="edu_challenge_prcatice_link" domainObjectName="EduChallengePrcaticeLink"></table>
+
+
     </context>
 </generatorConfiguration>

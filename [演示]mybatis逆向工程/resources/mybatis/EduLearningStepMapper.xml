@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduLearningStepMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduLearningStep" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="detail_step_id" property="detailStepId" jdbcType="BIGINT" />
+    <result column="explain_id" property="explainId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="explain_position" property="explainPosition" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_learning_step
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduLearningStep" >
+    insert into edu_learning_step (id, type, detail_step_id, 
+      explain_id, user_id, explain_position, 
+      create_time, update_time, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=BIT}, #{detailStepId,jdbcType=BIGINT}, 
+      #{explainId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{explainPosition,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduLearningStep" >
+    update edu_learning_step
+    set type = #{type,jdbcType=BIT},
+      detail_step_id = #{detailStepId,jdbcType=BIGINT},
+      explain_id = #{explainId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      explain_position = #{explainPosition,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, type, detail_step_id, explain_id, user_id, explain_position, create_time, 
+    update_time, is_delete
+    from edu_learning_step
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, type, detail_step_id, explain_id, user_id, explain_position, create_time, 
+    update_time, is_delete
+    from edu_learning_step
+  </select>
+</mapper>

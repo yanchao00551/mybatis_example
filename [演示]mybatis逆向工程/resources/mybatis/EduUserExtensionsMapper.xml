@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduUserExtensionsMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduUserExtensions" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="brief_introduction" property="briefIntroduction" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="occupation" property="occupation" jdbcType="VARCHAR" />
+    <result column="work_experience" property="workExperience" jdbcType="INTEGER" />
+    <result column="zip_code" property="zipCode" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="technical_title" property="technicalTitle" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="teacher_realname" property="teacherRealname" jdbcType="VARCHAR" />
+    <result column="student_realname" property="studentRealname" jdbcType="VARCHAR" />
+    <result column="location_city" property="locationCity" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="edu_background" property="eduBackground" jdbcType="INTEGER" />
+    <result column="edu_entry_year" property="eduEntryYear" jdbcType="INTEGER" />
+    <result column="backup_record" property="backupRecord" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="custom_department" property="customDepartment" jdbcType="VARCHAR" />
+    <result column="show_email" property="showEmail" jdbcType="BIT" />
+    <result column="show_location" property="showLocation" jdbcType="BIT" />
+    <result column="show_department" property="showDepartment" jdbcType="BIT" />
+    <result column="honor" property="honor" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_user_extensions
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduUserExtensions" >
+    insert into edu_user_extensions (id, user_id, birthday, 
+      brief_introduction, gender, location, 
+      occupation, work_experience, zip_code, 
+      create_time, update_time, technical_title, 
+      identity, student_id, teacher_realname, 
+      student_realname, location_city, school_id, 
+      description, department_id, edu_background, 
+      edu_entry_year, backup_record, province, 
+      city, custom_department, show_email, 
+      show_location, show_department, honor
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{birthday,jdbcType=DATE}, 
+      #{briefIntroduction,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{workExperience,jdbcType=INTEGER}, #{zipCode,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{technicalTitle,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, #{teacherRealname,jdbcType=VARCHAR}, 
+      #{studentRealname,jdbcType=VARCHAR}, #{locationCity,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, #{eduBackground,jdbcType=INTEGER}, 
+      #{eduEntryYear,jdbcType=INTEGER}, #{backupRecord,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{customDepartment,jdbcType=VARCHAR}, #{showEmail,jdbcType=BIT}, 
+      #{showLocation,jdbcType=BIT}, #{showDepartment,jdbcType=BIT}, #{honor,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduUserExtensions" >
+    update edu_user_extensions
+    set user_id = #{userId,jdbcType=BIGINT},
+      birthday = #{birthday,jdbcType=DATE},
+      brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      work_experience = #{workExperience,jdbcType=INTEGER},
+      zip_code = #{zipCode,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      technical_title = #{technicalTitle,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      teacher_realname = #{teacherRealname,jdbcType=VARCHAR},
+      student_realname = #{studentRealname,jdbcType=VARCHAR},
+      location_city = #{locationCity,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      edu_background = #{eduBackground,jdbcType=INTEGER},
+      edu_entry_year = #{eduEntryYear,jdbcType=INTEGER},
+      backup_record = #{backupRecord,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      custom_department = #{customDepartment,jdbcType=VARCHAR},
+      show_email = #{showEmail,jdbcType=BIT},
+      show_location = #{showLocation,jdbcType=BIT},
+      show_department = #{showDepartment,jdbcType=BIT},
+      honor = #{honor,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_id, birthday, brief_introduction, gender, location, occupation, work_experience, 
+    zip_code, create_time, update_time, technical_title, identity, student_id, teacher_realname, 
+    student_realname, location_city, school_id, description, department_id, edu_background, 
+    edu_entry_year, backup_record, province, city, custom_department, show_email, show_location, 
+    show_department, honor
+    from edu_user_extensions
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_id, birthday, brief_introduction, gender, location, occupation, work_experience, 
+    zip_code, create_time, update_time, technical_title, identity, student_id, teacher_realname, 
+    student_realname, location_city, school_id, description, department_id, edu_background, 
+    edu_entry_year, backup_record, province, city, custom_department, show_email, show_location, 
+    show_department, honor
+    from edu_user_extensions
+  </select>
+</mapper>

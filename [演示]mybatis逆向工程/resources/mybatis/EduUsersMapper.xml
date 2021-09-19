@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduUsersMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduUsers" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login" property="login" jdbcType="VARCHAR" />
+    <result column="hashed_password" property="hashedPassword" jdbcType="VARCHAR" />
+    <result column="firstname" property="firstname" jdbcType="VARCHAR" />
+    <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="admin" property="admin" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="last_login_on" property="lastLoginOn" jdbcType="TIMESTAMP" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="auth_source_id" property="authSourceId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="identity_url" property="identityUrl" jdbcType="VARCHAR" />
+    <result column="mail_notification" property="mailNotification" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="visits" property="visits" jdbcType="INTEGER" />
+    <result column="excellent_teacher" property="excellentTeacher" jdbcType="INTEGER" />
+    <result column="excellent_student" property="excellentStudent" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="authentication" property="authentication" jdbcType="BIT" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="experience" property="experience" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="show_realname" property="showRealname" jdbcType="BIT" />
+    <result column="professional_certification" property="professionalCertification" jdbcType="BIT" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="certification" property="certification" jdbcType="INTEGER" />
+    <result column="homepage_teacher" property="homepageTeacher" jdbcType="BIT" />
+    <result column="homepage_engineer" property="homepageEngineer" jdbcType="BIT" />
+    <result column="is_test" property="isTest" jdbcType="TINYINT" />
+    <result column="ecoder_user_id" property="ecoderUserId" jdbcType="INTEGER" />
+    <result column="business" property="business" jdbcType="BIT" />
+    <result column="profile_completed" property="profileCompleted" jdbcType="BIT" />
+    <result column="laboratory_id" property="laboratoryId" jdbcType="BIGINT" />
+    <result column="is_shixun_marker" property="isShixunMarker" jdbcType="BIT" />
+    <result column="admin_visitable" property="adminVisitable" jdbcType="BIT" />
+    <result column="collaborator" property="collaborator" jdbcType="BIT" />
+    <result column="is_mirror_marker" property="isMirrorMarker" jdbcType="BIT" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="gitea_token" property="giteaToken" jdbcType="VARCHAR" />
+    <result column="gitea_uid" property="giteaUid" jdbcType="INTEGER" />
+    <result column="is_sync_pwd" property="isSyncPwd" jdbcType="BIT" />
+    <result column="watchers_count" property="watchersCount" jdbcType="INTEGER" />
+    <result column="devops_step" property="devopsStep" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_users
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduUsers" >
+    insert into edu_users (id, login, hashed_password, 
+      firstname, lastname, mail, 
+      admin, status, last_login_on, 
+      language, auth_source_id, type, 
+      identity_url, mail_notification, salt, 
+      gid, visits, excellent_teacher, 
+      excellent_student, phone, authentication, 
+      grade, experience, nickname, 
+      show_realname, professional_certification, id_number, 
+      certification, homepage_teacher, homepage_engineer, 
+      is_test, ecoder_user_id, business, 
+      profile_completed, laboratory_id, is_shixun_marker, 
+      admin_visitable, collaborator, is_mirror_marker, 
+      platform, gitea_token, gitea_uid, 
+      is_sync_pwd, watchers_count, devops_step, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{login,jdbcType=VARCHAR}, #{hashedPassword,jdbcType=VARCHAR}, 
+      #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
+      #{admin,jdbcType=BIT}, #{status,jdbcType=INTEGER}, #{lastLoginOn,jdbcType=TIMESTAMP}, 
+      #{language,jdbcType=VARCHAR}, #{authSourceId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{identityUrl,jdbcType=VARCHAR}, #{mailNotification,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{gid,jdbcType=INTEGER}, #{visits,jdbcType=INTEGER}, #{excellentTeacher,jdbcType=INTEGER}, 
+      #{excellentStudent,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{authentication,jdbcType=BIT}, 
+      #{grade,jdbcType=INTEGER}, #{experience,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, 
+      #{showRealname,jdbcType=BIT}, #{professionalCertification,jdbcType=BIT}, #{idNumber,jdbcType=VARCHAR}, 
+      #{certification,jdbcType=INTEGER}, #{homepageTeacher,jdbcType=BIT}, #{homepageEngineer,jdbcType=BIT}, 
+      #{isTest,jdbcType=TINYINT}, #{ecoderUserId,jdbcType=INTEGER}, #{business,jdbcType=BIT}, 
+      #{profileCompleted,jdbcType=BIT}, #{laboratoryId,jdbcType=BIGINT}, #{isShixunMarker,jdbcType=BIT}, 
+      #{adminVisitable,jdbcType=BIT}, #{collaborator,jdbcType=BIT}, #{isMirrorMarker,jdbcType=BIT}, 
+      #{platform,jdbcType=VARCHAR}, #{giteaToken,jdbcType=VARCHAR}, #{giteaUid,jdbcType=INTEGER}, 
+      #{isSyncPwd,jdbcType=BIT}, #{watchersCount,jdbcType=INTEGER}, #{devopsStep,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduUsers" >
+    update edu_users
+    set login = #{login,jdbcType=VARCHAR},
+      hashed_password = #{hashedPassword,jdbcType=VARCHAR},
+      firstname = #{firstname,jdbcType=VARCHAR},
+      lastname = #{lastname,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      admin = #{admin,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      last_login_on = #{lastLoginOn,jdbcType=TIMESTAMP},
+      language = #{language,jdbcType=VARCHAR},
+      auth_source_id = #{authSourceId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      identity_url = #{identityUrl,jdbcType=VARCHAR},
+      mail_notification = #{mailNotification,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=INTEGER},
+      visits = #{visits,jdbcType=INTEGER},
+      excellent_teacher = #{excellentTeacher,jdbcType=INTEGER},
+      excellent_student = #{excellentStudent,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      authentication = #{authentication,jdbcType=BIT},
+      grade = #{grade,jdbcType=INTEGER},
+      experience = #{experience,jdbcType=INTEGER},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      show_realname = #{showRealname,jdbcType=BIT},
+      professional_certification = #{professionalCertification,jdbcType=BIT},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      certification = #{certification,jdbcType=INTEGER},
+      homepage_teacher = #{homepageTeacher,jdbcType=BIT},
+      homepage_engineer = #{homepageEngineer,jdbcType=BIT},
+      is_test = #{isTest,jdbcType=TINYINT},
+      ecoder_user_id = #{ecoderUserId,jdbcType=INTEGER},
+      business = #{business,jdbcType=BIT},
+      profile_completed = #{profileCompleted,jdbcType=BIT},
+      laboratory_id = #{laboratoryId,jdbcType=BIGINT},
+      is_shixun_marker = #{isShixunMarker,jdbcType=BIT},
+      admin_visitable = #{adminVisitable,jdbcType=BIT},
+      collaborator = #{collaborator,jdbcType=BIT},
+      is_mirror_marker = #{isMirrorMarker,jdbcType=BIT},
+      platform = #{platform,jdbcType=VARCHAR},
+      gitea_token = #{giteaToken,jdbcType=VARCHAR},
+      gitea_uid = #{giteaUid,jdbcType=INTEGER},
+      is_sync_pwd = #{isSyncPwd,jdbcType=BIT},
+      watchers_count = #{watchersCount,jdbcType=INTEGER},
+      devops_step = #{devopsStep,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, login, hashed_password, firstname, lastname, mail, admin, status, last_login_on, 
+    language, auth_source_id, type, identity_url, mail_notification, salt, gid, visits, 
+    excellent_teacher, excellent_student, phone, authentication, grade, experience, nickname, 
+    show_realname, professional_certification, id_number, certification, homepage_teacher, 
+    homepage_engineer, is_test, ecoder_user_id, business, profile_completed, laboratory_id, 
+    is_shixun_marker, admin_visitable, collaborator, is_mirror_marker, platform, gitea_token, 
+    gitea_uid, is_sync_pwd, watchers_count, devops_step, create_time, update_time
+    from edu_users
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, login, hashed_password, firstname, lastname, mail, admin, status, last_login_on, 
+    language, auth_source_id, type, identity_url, mail_notification, salt, gid, visits, 
+    excellent_teacher, excellent_student, phone, authentication, grade, experience, nickname, 
+    show_realname, professional_certification, id_number, certification, homepage_teacher, 
+    homepage_engineer, is_test, ecoder_user_id, business, profile_completed, laboratory_id, 
+    is_shixun_marker, admin_visitable, collaborator, is_mirror_marker, platform, gitea_token, 
+    gitea_uid, is_sync_pwd, watchers_count, devops_step, create_time, update_time
+    from edu_users
+  </select>
+</mapper>

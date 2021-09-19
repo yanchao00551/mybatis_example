@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduChallengeMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduChallenge" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="knowledge_point_id" property="knowledgePointId" jdbcType="BIGINT" />
+    <result column="practice_id" property="practiceId" jdbcType="BIGINT" />
+    <result column="chapter_id" property="chapterId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_challenge
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduChallenge" >
+    insert into edu_challenge (id, name, position, 
+      knowledge_point_id, practice_id, chapter_id, 
+      user_id, create_time, update_time, 
+      is_delete)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, 
+      #{knowledgePointId,jdbcType=BIGINT}, #{practiceId,jdbcType=BIGINT}, #{chapterId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduChallenge" >
+    update edu_challenge
+    set name = #{name,jdbcType=VARCHAR},
+      position = #{position,jdbcType=INTEGER},
+      knowledge_point_id = #{knowledgePointId,jdbcType=BIGINT},
+      practice_id = #{practiceId,jdbcType=BIGINT},
+      chapter_id = #{chapterId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, name, position, knowledge_point_id, practice_id, chapter_id, user_id, 
+    create_time, update_time, is_delete
+    from edu_challenge
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, position, knowledge_point_id, practice_id, chapter_id, user_id, 
+    create_time, update_time, is_delete
+    from edu_challenge
+  </select>
+</mapper>
